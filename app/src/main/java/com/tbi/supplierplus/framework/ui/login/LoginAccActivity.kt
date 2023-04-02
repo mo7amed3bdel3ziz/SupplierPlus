@@ -30,20 +30,7 @@ class LoginAccActivity : AppCompatActivity() {
         binding = ActivityLoginAccBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.READ_CALL_LOG
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(android.Manifest.permission.READ_CALL_LOG),
-                101
-            )
 
-        } else {
-            displayLog()
-        }
 
         val androidId: String = Settings.Secure.getString(
             contentResolver,
@@ -64,12 +51,10 @@ class LoginAccActivity : AppCompatActivity() {
 
                         binding.textView5.text = it.data.message
                         // Toast.makeText(applicationContext, it.data.State.toString() + "your Request is pending", Toast.LENGTH_SHORT).show()
-                        Toast.makeText(
-                            applicationContext,
-                            it.data.State.toString() + it.data.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(applicationContext, it.data.State.toString() + it.data.message, Toast.LENGTH_SHORT).show()
+
                         binding.textView5.setText(it.data.message)
+
                     } else if (it.data!!.State == 1) {
 
                         //Successfully Login
@@ -79,11 +64,7 @@ class LoginAccActivity : AppCompatActivity() {
 //                        Log.d("saveInfoLogin",it.data.item.Name)
 //                        viewModel.saveItems(it.data.item.comid.toString(),it.data.item.AndroidID)
 
-                        Toast.makeText(
-                            applicationContext,
-                            it.data.State.toString() + it.data.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(applicationContext, it.data.State.toString() + it.data.message, Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
